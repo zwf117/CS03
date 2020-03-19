@@ -1,0 +1,55 @@
+C#企业级开发技术练习3答题卡
+
+班级：   19计算机信息管理1班  
+姓名：     祝晚芳
+学号：     20190307117
+
+注：请将答案放置在序号下方。*/
+
+（一） delegate double CalcD(float a, float b, float c);
+    class Program
+    {
+        static double CalcSum(float a, float b,float c)
+        { return a + b + c; }
+        static double CalcMul(float a, float b, float c)
+        { return a * b * c; }
+        static void Main(string[] args)
+        {
+            CalcD cd = CalcSum;
+            cd += CalcMul;
+            Console.WriteLine(cd(5.1f,2.0f,0.1f));
+            cd -= CalcMul;
+            Console.WriteLine(cd(5.1f, 2.0f, 0.1f));
+        }
+    }
+
+
+（二）static void CalcE(decimal[] a)
+        { Console.WriteLine($"总和：{a.Sum()}"); }
+        static void CalcAvg(decimal[] a)
+        { Console.WriteLine($"平均值：{a.Average()}"); }
+        static void Main(string[] args)
+        { 
+            Action<decimal[]> ce = CalcE;
+            ce += CalcAvg;
+            ce(new[] { 1.2M, 8.9M, 2.1M, 9.9M });
+        }
+
+
+（三） class Program
+    {
+        static void CalcJoin(string[] x)
+        {
+            Console.WriteLine(string.Join(",", x));
+        }
+        static void CalcConcat(string[] x)
+        {
+            Console.WriteLine(string.Concat(x));
+        }
+        static void Main(string[] args)
+        {
+            Action<string[]> ac = CalcJoin;
+            ac += CalcConcat;
+            ac(new[] { "\"sql\"", "\"cs\"" });
+        }
+    }
